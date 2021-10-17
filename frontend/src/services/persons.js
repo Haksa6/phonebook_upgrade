@@ -22,5 +22,5 @@ const update = (id, newObject) => {
   const request = axios.put(`${baseUrl}/${id}`, newObject)
   return request.then(response => response.data)
 }
-
-export default { getAll, create, update, remove }
+const kakka = { getAll, create, update, remove }
+export default kakka;
