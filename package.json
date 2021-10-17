@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "newfront": "rm -rf build && cp -r ../../../2/laskarit/phonebook/build .",
-    "lint": "eslint .",
+    "lint": "eslint --debug ",
     "build": "cd frontend && npm install && npm run build"
   },
   "author": "",
