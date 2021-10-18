@@ -39,3 +39,19 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEFAULT_BUMB: patch
+    - name: Send success to slack
+      if: ${{ success() }} 
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: message,commit,took 
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+    - name: Send failure to slack
+      if: ${{ failure() }} 
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: message,commit,took 
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
