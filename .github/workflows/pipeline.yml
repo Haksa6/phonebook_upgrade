@@ -22,3 +22,13 @@ jobs:
       run: npm run build
     - name: lint
       run: npm run lint
+    - name: deploy to heroku
+      if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ''), '#skip') }}
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with: 
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: phonebookupgraded
+        heroku_email: hakonenweeti@gmail.com
+        healthcheck: https://phonebookupgraded.herokuapp.com/health
+        checkstring: ok
+        rollbackonhealthcheckfailed: true
